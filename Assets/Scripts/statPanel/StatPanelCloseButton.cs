@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class HelpPanelCloseButton : MonoBehaviour {
-    public static HelpPanelCloseButton _instance;
+public class StatPanelCloseButton : MonoBehaviour 
+{
+    public static StatPanelCloseButton _instance;
     public dfTweenVector3 tween;
 
     public void Awake()
@@ -22,9 +24,10 @@ public class HelpPanelCloseButton : MonoBehaviour {
         tween.Play();
     }
 
-    public void OnClick(dfControl control,dfMouseEventArgs args)
-    {
+	public void OnClick( dfControl control, dfMouseEventArgs mouseEvent )
+	{
         audio.Play();
         BounceOut();
-    }
+	}
+
 }

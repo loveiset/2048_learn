@@ -209,6 +209,8 @@
      <Compile Include="Assets\Daikon Forge\Tweening\Scripts\dfTweenVector4.cs" />
      <Compile Include="Assets\Scripts\helpPanel\HelpButton.cs" />
      <Compile Include="Assets\Scripts\helpPanel\HelpPanelCloseButton.cs" />
+     <Compile Include="Assets\Scripts\statPanel\StatButton.cs" />
+     <Compile Include="Assets\Scripts\statPanel\StatPanelCloseButton.cs" />
      <None Include="Assets\Daikon Forge\Examples\Skins\Fantasy\Fonts\Open Sans\Heiro-OpenSans-Regular-24px.fnt" />
      <None Include="Assets\Daikon Forge\Examples\Labels\Atlas\Huggable32.fnt" />
      <None Include="Assets\Daikon Forge\Examples\Skins\Fantasy\Fonts\Open Sans\Heiro-OpenSans-Regular-12px.fnt" />
