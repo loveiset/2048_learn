@@ -8,10 +8,19 @@ public class Number : MonoBehaviour
     public int positionX = 0, positionY = 0;
     public Vector2 posOffset = Vector2.zero;
 
+    public dfTweenVector2 tweenIn;
+    public dfTweenVector2 tweenOut;
+    public dfTweenVector3 tweenMove;
+
+    private bool isDisappear = false;
+
     void Start()
     {
         InitShow();
         InitPosition();
+
+        tweenMove.TweenCompleted += this.OnTweenMoveCompleted;
+        tweenOut.TweenCompleted += this.OnTweenOutCompleted;
     }
 
     private void InitPosition()
@@ -81,5 +90,30 @@ public class Number : MonoBehaviour
         this.GetComponent<dfTiledSprite>().TileScroll = new Vector2(0.33f * x, 0.163f * y);
     }
 
+    public void MoveToPosition(int targetX, int targetY)
+    {
+        GameController._instance.numberArray[targetX][targetX]++;
+        GameController._instance.numCoponentArray[targetX][targetY] = this;
+        tweenMove.EndValue = new Vector3(targetX * 108 + posOffset.x, targetY * 108 + posOffset.y, 0);
+        tweenMove.Play();
+    }
+
+    public void Disappear()
+    {
+        isDisappear = true;
+    }
+
+    public void OnTweenMoveCompleted(dfTweenPlayableBase sender)
+    {
+        if (isDisappear)
+        {
+            tweenOut.Play();
+        }
+    }
+
+    public void OnTweenOutCompleted(dfTweenPlayableBase sender)
+    {
+        Destroy(this.gameObject);
+    }
 
 }
