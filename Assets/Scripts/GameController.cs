@@ -33,6 +33,20 @@ public class GameController : MonoBehaviour
     void Start()
     {
         GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
+        GenerateNumber();
     }
 
     void Update()
@@ -63,50 +77,59 @@ public class GameController : MonoBehaviour
         new Number[4]{null,null,null,null}
     };
 
-    private void GenerateNumber()
+    private void GenerateNumber(int posX = -1, int posY = -1, int numberToCreate = 1, float tweenInDelay = 0.0f)
     {
         int numberX = -1;
         int numberY = -1;
-        int countOfEmptyNumber = 0;
-        for (int x = 0; x < 4; x++)
+        if (posX == -1 || posY == -1)
         {
-            for (int y = 0; y < 4; y++)
+            int countOfEmptyNumber = 0;
+            for (int x = 0; x < 4; x++)
             {
-                if (numberArray[x][y] == 0)
+                for (int y = 0; y < 4; y++)
                 {
-                    countOfEmptyNumber++;
+                    if (numberArray[x][y] == 0)
+                    {
+                        countOfEmptyNumber++;
+                    }
                 }
             }
-        }
-        if (countOfEmptyNumber == 0)
-        {
-            return;
-        }
-
-        int randomNum = Random.Range(1, countOfEmptyNumber + 1);
-        int index = 0;
-        for (int x = 0; x < 4; x++)
-        {
-            for (int y = 0; y < 4; y++)
+            if (countOfEmptyNumber == 0)
             {
-                if (numberArray[x][y] == 0)
+                return;
+            }
+
+            int randomNum = Random.Range(1, countOfEmptyNumber + 1);
+            int index = 0;
+            for (int x = 0; x < 4; x++)
+            {
+                for (int y = 0; y < 4; y++)
                 {
-                    index++;
-                    if (index == randomNum)
+                    if (numberArray[x][y] == 0)
                     {
-                        numberX = x;
-                        numberY = y;
-                        goto flag;
+                        index++;
+                        if (index == randomNum)
+                        {
+                            numberX = x;
+                            numberY = y;
+                            goto flag;
+                        }
                     }
                 }
             }
         }
+        else
+        {
+            numberX = posX;
+            numberY = posY;
+        }
     flag:
         dfControl numdfControl = this.GetComponent<dfControl>().AddPrefab(numberPrefab);
         Number number = numdfControl.GetComponent<Number>();
-        number.number = 1;
+        number.number = numberToCreate;
         number.positionX = numberX;
         number.positionY = numberY;
+        number.SetTweenDelay(tweenInDelay);
         numberArray[numberX][numberY]++;
         numCoponentArray[numberX][numberY] = number;
         return;
@@ -170,6 +193,8 @@ public class GameController : MonoBehaviour
 
     private void MoveNumber()
     {
+        bool isAnyNumberMove = false;
+        int countCombine = 0;
         if (Input.GetMouseButtonDown(0))
         {
             mouseDownPosition = Input.mousePosition;
@@ -184,6 +209,45 @@ public class GameController : MonoBehaviour
             case TouchDir.None:
                 return;
             case TouchDir.Left:
+                for (int y = 0; y < 4; y++)
+                {
+                    Number preNumber = null;
+                    int index = -1;
+                    for (int x = 0; x < 4; x++)
+                    {
+                        if (numberArray[x][y] == 0)
+                        {
+                            continue;
+                        }
+                        if (preNumber == null)
+                        {
+                            preNumber = numCoponentArray[x][y];
+                            index++;
+                        }
+                        else
+                        {
+                            if (preNumber.number == numCoponentArray[x][y].number)
+                            {
+                                GenerateNumber(index, y, preNumber.number + 1, 0.5f);
+                                countCombine++;
+                                preNumber.Disappear();
+                                numCoponentArray[x][y].Disappear();
+
+                                preNumber = null;
+                            }
+                            else
+                            {
+                                preNumber = numCoponentArray[x][y];
+                                index++;
+                            }
+                        }
+
+                        if (numCoponentArray[x][y].MoveToPosition(index, y))
+                        {
+                            isAnyNumberMove = true;
+                        }
+                    }
+                }
                 break;
             case TouchDir.Right:
                 for (int y = 0; y < 4; y++)
@@ -199,16 +263,18 @@ public class GameController : MonoBehaviour
                         if (preNumber == null)
                         {
                             preNumber = numCoponentArray[x][y];
-                            index--; 
+                            index--;
                         }
                         else
                         {
                             if (preNumber.number == numCoponentArray[x][y].number)
                             {
-                                this.GetComponent<dfControl>().AddPrefab(numberPrefab);
-
+                                GenerateNumber(index, y, preNumber.number + 1,0.5f);
+                                countCombine++;
                                 preNumber.Disappear();
                                 numCoponentArray[x][y].Disappear();
+
+                                preNumber = null;
                             }
                             else
                             {
@@ -216,16 +282,102 @@ public class GameController : MonoBehaviour
                                 index--;
                             }
                         }
-                        //
-                        Debug.Log(index);
-                        numCoponentArray[x][y].MoveToPosition(index, y);
+                        if (numCoponentArray[x][y].MoveToPosition(index, y))
+                        {
+                            isAnyNumberMove = true;
+                        }
                     }
                 }
                     break;
             case TouchDir.Top:
+                    for (int x = 0; x < 4; x++)
+                    {
+                        Number preNumber = null;
+                        int index = -1;
+                        for (int y = 0; y < 4; y++)
+                        {
+                            if (numberArray[x][y] == 0)
+                            {
+                                continue;
+                            }
+                            if (preNumber == null)
+                            {
+                                preNumber = numCoponentArray[x][y];
+                                index++;
+                            }
+                            else
+                            {
+                                if (preNumber.number == numCoponentArray[x][y].number)
+                                {
+                                    GenerateNumber(x, index, preNumber.number + 1, 0.5f);
+                                    countCombine++;
+                                    preNumber.Disappear();
+                                    numCoponentArray[x][y].Disappear();
+
+                                    preNumber = null;
+                                }
+                                else
+                                {
+                                    preNumber = numCoponentArray[x][y];
+                                    index++;
+                                }
+                            }
+                            if (numCoponentArray[x][y].MoveToPosition(x, index))
+                            {
+                                isAnyNumberMove = true;
+                            }
+                        }
+                    }
                 break;
             case TouchDir.Bottom:
+                for (int x = 0; x < 4; x++)
+                {
+                    Number preNumber = null;
+                    int index = 4;
+                    for (int y = 3; y >= 0; y--)
+                    {
+                        if (numberArray[x][y] == 0)
+                        {
+                            continue;
+                        }
+                        if (preNumber == null)
+                        {
+                            preNumber = numCoponentArray[x][y];
+                            index--;
+                        }
+                        else
+                        {
+                            if (preNumber.number == numCoponentArray[x][y].number)
+                            {
+                                GenerateNumber(x, index, preNumber.number + 1, 0.5f);
+                                countCombine++;
+                                preNumber.Disappear();
+                                numCoponentArray[x][y].Disappear();
+
+                                preNumber = null;
+                            }
+                            else
+                            {
+                                preNumber = numCoponentArray[x][y];
+                                index--;
+                            }
+                        }
+                        if (numCoponentArray[x][y].MoveToPosition(x, index))
+                        {
+                            isAnyNumberMove = true;
+                        }
+                    }
+                }
                 break;
+        }
+
+        if (countCombine > 0)
+        {
+            audio.Play();
+        }
+        if (isAnyNumberMove)
+        {
+            GenerateNumber();
         }
     }
 
@@ -234,7 +386,6 @@ public class GameController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 touchOffset = Input.mousePosition - mouseDownPosition;
-            Debug.Log(touchOffset);
             if (Mathf.Abs(touchOffset.x) < Mathf.Abs(touchOffset.y) && Mathf.Abs(touchOffset.y) > 50)
             {
                 if (touchOffset.y < 0)

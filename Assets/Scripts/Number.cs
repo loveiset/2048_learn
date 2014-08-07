@@ -12,15 +12,27 @@ public class Number : MonoBehaviour
     public dfTweenVector2 tweenOut;
     public dfTweenVector3 tweenMove;
 
+    private float tweenInDelay = 0;
+
     private bool isDisappear = false;
 
-    void Start()
+    public void SetTweenDelay(float tweenInDelay)
     {
+        this.tweenInDelay = tweenInDelay;
+    }
+
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(tweenInDelay);
         InitShow();
         InitPosition();
 
         tweenMove.TweenCompleted += this.OnTweenMoveCompleted;
         tweenOut.TweenCompleted += this.OnTweenOutCompleted;
+
+
+
+        tweenIn.Play();
     }
 
     private void InitPosition()
@@ -86,16 +98,21 @@ public class Number : MonoBehaviour
                 y = 0;
                 break;
         }
-
         this.GetComponent<dfTiledSprite>().TileScroll = new Vector2(0.33f * x, 0.163f * y);
     }
 
-    public void MoveToPosition(int targetX, int targetY)
+    public bool MoveToPosition(int targetX, int targetY)
     {
-        GameController._instance.numberArray[targetX][targetX]++;
-        GameController._instance.numCoponentArray[targetX][targetY] = this;
+        bool temp = ((positionX != targetX) || (positionY != targetY));
+        GameController._instance.numberArray[targetX][targetY]++;
+        GameController._instance.numberArray[positionX][positionY]--;
+        positionX = targetX;
+        positionY = targetY;
+
+
         tweenMove.EndValue = new Vector3(targetX * 108 + posOffset.x, targetY * 108 + posOffset.y, 0);
         tweenMove.Play();
+        return temp;
     }
 
     public void Disappear()
@@ -109,10 +126,15 @@ public class Number : MonoBehaviour
         {
             tweenOut.Play();
         }
+        else
+        {
+            GameController._instance.numCoponentArray[positionX][positionY] = this;
+        }
     }
 
     public void OnTweenOutCompleted(dfTweenPlayableBase sender)
     {
+        GameController._instance.numberArray[positionX][positionY]--;
         Destroy(this.gameObject);
     }
 

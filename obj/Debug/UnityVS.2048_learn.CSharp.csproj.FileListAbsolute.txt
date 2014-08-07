@@ -1,0 +1,10 @@
+D:\Documents\Unity\2048_learn\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+D:\Documents\Unity\2048_learn\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+D:\Documents\Unity\2048_learn\Temp\UnityVS_bin\Debug\dfScriptLite.dll
+D:\Documents\Unity\2048_learn\Temp\UnityVS_bin\Debug\UnityEditor.dll
+D:\Documents\Unity\2048_learn\Temp\UnityVS_bin\Debug\UnityEngine.dll
+D:\Documents\Unity\2048_learn\Temp\UnityVS_bin\Debug\UnityEngine.xml
+D:\Documents\Unity\2048_learn\Temp\UnityVS_bin\Debug\UnityEditor.xml
+D:\Documents\Unity\2048_learn\obj\Debug\UnityVS.2048_learn.CSharp.csprojResolveAssemblyReference.cache
+D:\Documents\Unity\2048_learn\obj\Debug\Assembly-CSharp.dll
+D:\Documents\Unity\2048_learn\obj\Debug\Assembly-CSharp.pdb
