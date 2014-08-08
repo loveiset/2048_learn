@@ -212,8 +212,12 @@
     <Compile Include="Assets\Daikon Forge\Tweening\Scripts\dfTweenVector2.cs" />
     <Compile Include="Assets\Daikon Forge\Tweening\Scripts\dfTweenVector3.cs" />
     <Compile Include="Assets\Daikon Forge\Tweening\Scripts\dfTweenVector4.cs" />
+    <Compile Include="Assets\Scripts\BackButton.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameEndPanel.cs" />
     <Compile Include="Assets\Scripts\Number.cs" />
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\StartButton.cs" />
     <Compile Include="Assets\Scripts\helpPanel\HelpButton.cs" />
     <Compile Include="Assets\Scripts\helpPanel\HelpPanelCloseButton.cs" />
     <Compile Include="Assets\Scripts\statPanel\RankItem.cs" />

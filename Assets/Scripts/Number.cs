@@ -101,13 +101,17 @@ public class Number : MonoBehaviour
         this.GetComponent<dfTiledSprite>().TileScroll = new Vector2(0.33f * x, 0.163f * y);
     }
 
-    public bool MoveToPosition(int targetX, int targetY)
+    public bool MoveToPosition(int targetX, int targetY, bool isNeedUpdateComponentArray)
     {
         bool temp = ((positionX != targetX) || (positionY != targetY));
         GameController._instance.numberArray[targetX][targetY]++;
         GameController._instance.numberArray[positionX][positionY]--;
         positionX = targetX;
         positionY = targetY;
+        if (isNeedUpdateComponentArray)
+        {
+            GameController._instance.numCoponentArray[positionX][positionY] = this;
+        }
 
 
         tweenMove.EndValue = new Vector3(targetX * 108 + posOffset.x, targetY * 108 + posOffset.y, 0);
@@ -128,7 +132,7 @@ public class Number : MonoBehaviour
         }
         else
         {
-            GameController._instance.numCoponentArray[positionX][positionY] = this;
+            
         }
     }
 

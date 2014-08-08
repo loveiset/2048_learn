@@ -215,6 +215,7 @@ public class GameController : MonoBehaviour
                     int index = -1;
                     for (int x = 0; x < 4; x++)
                     {
+                        bool isNeedUpdateComponentArray = true;
                         if (numberArray[x][y] == 0)
                         {
                             continue;
@@ -229,11 +230,13 @@ public class GameController : MonoBehaviour
                             if (preNumber.number == numCoponentArray[x][y].number)
                             {
                                 GenerateNumber(index, y, preNumber.number + 1, 0.5f);
+                                ScoreManager._instance.AddScore((int)Mathf.Pow(2, preNumber.number + 1));
                                 countCombine++;
                                 preNumber.Disappear();
                                 numCoponentArray[x][y].Disappear();
 
                                 preNumber = null;
+                                isNeedUpdateComponentArray = false;
                             }
                             else
                             {
@@ -242,7 +245,7 @@ public class GameController : MonoBehaviour
                             }
                         }
 
-                        if (numCoponentArray[x][y].MoveToPosition(index, y))
+                        if (numCoponentArray[x][y].MoveToPosition(index, y, isNeedUpdateComponentArray))
                         {
                             isAnyNumberMove = true;
                         }
@@ -256,6 +259,7 @@ public class GameController : MonoBehaviour
                     int index = 4;
                     for (int x = 3; x >= 0; x--)
                     {
+                        bool isNeedUpdateComponentArray = true;
                         if (numberArray[x][y] == 0)
                         {
                             continue;
@@ -270,11 +274,13 @@ public class GameController : MonoBehaviour
                             if (preNumber.number == numCoponentArray[x][y].number)
                             {
                                 GenerateNumber(index, y, preNumber.number + 1,0.5f);
+                                ScoreManager._instance.AddScore((int)Mathf.Pow(2, preNumber.number + 1));
                                 countCombine++;
                                 preNumber.Disappear();
                                 numCoponentArray[x][y].Disappear();
 
                                 preNumber = null;
+                                isNeedUpdateComponentArray = false;
                             }
                             else
                             {
@@ -282,7 +288,7 @@ public class GameController : MonoBehaviour
                                 index--;
                             }
                         }
-                        if (numCoponentArray[x][y].MoveToPosition(index, y))
+                        if (numCoponentArray[x][y].MoveToPosition(index, y, isNeedUpdateComponentArray))
                         {
                             isAnyNumberMove = true;
                         }
@@ -296,6 +302,7 @@ public class GameController : MonoBehaviour
                         int index = -1;
                         for (int y = 0; y < 4; y++)
                         {
+                            bool isNeedUpdateComponentArray = true;
                             if (numberArray[x][y] == 0)
                             {
                                 continue;
@@ -310,11 +317,13 @@ public class GameController : MonoBehaviour
                                 if (preNumber.number == numCoponentArray[x][y].number)
                                 {
                                     GenerateNumber(x, index, preNumber.number + 1, 0.5f);
+                                    ScoreManager._instance.AddScore((int)Mathf.Pow(2, preNumber.number + 1));
                                     countCombine++;
                                     preNumber.Disappear();
                                     numCoponentArray[x][y].Disappear();
 
                                     preNumber = null;
+                                    isNeedUpdateComponentArray = false;
                                 }
                                 else
                                 {
@@ -322,7 +331,7 @@ public class GameController : MonoBehaviour
                                     index++;
                                 }
                             }
-                            if (numCoponentArray[x][y].MoveToPosition(x, index))
+                            if (numCoponentArray[x][y].MoveToPosition(x, index, isNeedUpdateComponentArray))
                             {
                                 isAnyNumberMove = true;
                             }
@@ -336,6 +345,7 @@ public class GameController : MonoBehaviour
                     int index = 4;
                     for (int y = 3; y >= 0; y--)
                     {
+                        bool isNeedUpdateComponentArray = true;
                         if (numberArray[x][y] == 0)
                         {
                             continue;
@@ -350,11 +360,13 @@ public class GameController : MonoBehaviour
                             if (preNumber.number == numCoponentArray[x][y].number)
                             {
                                 GenerateNumber(x, index, preNumber.number + 1, 0.5f);
+                                ScoreManager._instance.AddScore((int)Mathf.Pow(2, preNumber.number + 1));
                                 countCombine++;
                                 preNumber.Disappear();
                                 numCoponentArray[x][y].Disappear();
 
                                 preNumber = null;
+                                isNeedUpdateComponentArray = false;
                             }
                             else
                             {
@@ -362,7 +374,7 @@ public class GameController : MonoBehaviour
                                 index--;
                             }
                         }
-                        if (numCoponentArray[x][y].MoveToPosition(x, index))
+                        if (numCoponentArray[x][y].MoveToPosition(x, index, isNeedUpdateComponentArray))
                         {
                             isAnyNumberMove = true;
                         }
@@ -378,6 +390,12 @@ public class GameController : MonoBehaviour
         if (isAnyNumberMove)
         {
             GenerateNumber();
+        }
+
+        if (CheckGameOver() || CheckWin())
+        {
+            //display gameover
+            GameEndPanel._instance.Show();
         }
     }
 
