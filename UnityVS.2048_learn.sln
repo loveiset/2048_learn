@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.2048_learn.CSharp",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.2048_learn.CSharp.Editor", "UnityVS.2048_learn.CSharp.Editor.csproj", "{E4231683-BB41-9D4B-7D69-3C8BF612332A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.2048_learn.CSharp.Editor.Plugins", "UnityVS.2048_learn.CSharp.Editor.Plugins.csproj", "{550CA30B-E511-18F3-331C-823A81CF336D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.2048_learn.CSharp.Plugins", "UnityVS.2048_learn.CSharp.Plugins.csproj", "{A00EE9F6-0E85-8CD1-E7A4-385221D34BD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{E4231683-BB41-9D4B-7D69-3C8BF612332A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4231683-BB41-9D4B-7D69-3C8BF612332A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4231683-BB41-9D4B-7D69-3C8BF612332A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550CA30B-E511-18F3-331C-823A81CF336D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550CA30B-E511-18F3-331C-823A81CF336D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550CA30B-E511-18F3-331C-823A81CF336D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550CA30B-E511-18F3-331C-823A81CF336D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A00EE9F6-0E85-8CD1-E7A4-385221D34BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00EE9F6-0E85-8CD1-E7A4-385221D34BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00EE9F6-0E85-8CD1-E7A4-385221D34BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00EE9F6-0E85-8CD1-E7A4-385221D34BD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
