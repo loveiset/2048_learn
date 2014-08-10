@@ -8,7 +8,7 @@ public class BackButton : MonoBehaviour
 	public void OnClick( dfControl control, dfMouseEventArgs mouseEvent )
 	{
 		// Add event handler code here
-        Application.LoadLevel(0);
+		Debug.Log( "Click" );
 	}
 
 }

@@ -17,7 +17,7 @@ public class GameEndPanel : MonoBehaviour
     public void Show()
     {
         dfControl control = this.GetComponent<dfControl>();
-        tween.EndValue = new Vector3((control.GUIManager.GetScreenSize().x - control.Width) / 2, (control.GUIManager.GetScreenSize().y - control.Height) / 2, 0);
+        tween.EndValue = new Vector3((Screen.width - control.Width) / 2, (Screen.height - control.Height) / 2, 0);
         score.Text = ScoreManager._instance.score + "";
         ScoreManager._instance.UpdateHighScore();
         tween.Play();

@@ -67,14 +67,6 @@
       <Project>{C7CE4841-EB36-4C54-B234-1D0899BFDFD3}</Project>
       <Name>UnityVS.2048_learn.CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityVS.2048_learn.CSharp.Editor.Plugins.csproj">
-      <Project>{550CA30B-E511-18F3-331C-823A81CF336D}</Project>
-      <Name>UnityVS.2048_learn.CSharp.Editor.Plugins</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityVS.2048_learn.CSharp.Plugins.csproj">
-      <Project>{A00EE9F6-0E85-8CD1-E7A4-385221D34BD5}</Project>
-      <Name>UnityVS.2048_learn.CSharp.Plugins</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Daikon Forge\DFGUI\Editor\dfAnimationClipInspector.cs" />
@@ -146,7 +138,6 @@
     <None Include="Assets\Daikon Forge\Examples\Shaders\Radar Sweep Shader.shader" />
     <None Include="Assets\Daikon Forge\Examples\Shaders\TechBlueShader.shader" />
     <None Include="Assets\Daikon Forge\Resources\Change Log.txt" />
-    <None Include="Assets\Plugins\FingerGestures\Readme.txt" />
     <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll" />
     <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll" />
     <None Include="Assets\UnityVS\Editor\UnityVS.VersionSpecific.dll" />
