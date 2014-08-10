@@ -32,20 +32,20 @@ public class RankListManager : MonoBehaviour
     {
         List<RankItem> rankItemList = new List<RankItem>();
 
-        RankItem rankItem1 = new RankItem();
-        rankItem1.dateStr = "2013-3-3";
-        rankItem1.score = 1000;
-        rankItemList.Add(rankItem1);
+        //RankItem rankItem1 = new RankItem();
+        //rankItem1.dateStr = "2013-3-3";
+        //rankItem1.score = 1000;
+        //rankItemList.Add(rankItem1);
 
-        RankItem rankItem2 = new RankItem();
-        rankItem2.dateStr = "2013-3-3";
-        rankItem2.score = 1000;
-        rankItemList.Add(rankItem2);
+        //RankItem rankItem2 = new RankItem();
+        //rankItem2.dateStr = "2013-3-3";
+        //rankItem2.score = 1000;
+        //rankItemList.Add(rankItem2);
 
-        RankItem rankItem3 = new RankItem();
-        rankItem3.dateStr = "2013-3-3";
-        rankItem3.score = 1000;
-        rankItemList.Add(rankItem3);
+        //RankItem rankItem3 = new RankItem();
+        //rankItem3.dateStr = "2013-3-3";
+        //rankItem3.score = 1000;
+        //rankItemList.Add(rankItem3);
 
         return rankItemList;
     }
